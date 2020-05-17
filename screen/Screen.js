@@ -17,10 +17,7 @@ class Screen extends React.Component {
         this.setState({
             course: this.props.navigation.getParam('param')
         })
-        console.log(this.state.course);
-        
-        console.log(this.props.navigation.getParam('param'));
-        
+        console.log(this.props.navigation.getParam('param'));   
     }
 
     _goto=(course)=>{
@@ -31,7 +28,6 @@ class Screen extends React.Component {
                 id: firebase.auth().currentUser.uid
             })
         }).then(function() {
-            //alert('Поздрав')
             console.log("Document successfully updated!");
         })
         .catch(function(error) {
