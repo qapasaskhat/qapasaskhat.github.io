@@ -4,7 +4,9 @@ import {
     Text,
     StyleSheet,
     Dimensions,
-    Image
+    Image,
+    Linking,
+    Alert
 } from 'react-native'
 import firebase from 'firebase'
 import {Video} from 'expo-av'
@@ -56,7 +58,7 @@ class LessonScreen extends React.Component{
                     rate={1.0}
                     volume={1.0}
                     isMuted={false}
-                    resizeMode="cover"
+                    resizeMode='contain'
                     shouldPlay={false}
                     isLooping
                     useNativeControls={true}
@@ -110,18 +112,35 @@ class LessonScreen extends React.Component{
                                         maxWidth: '85%'
                                     }}>{item.name}</Text>
                                 </View> 
-                                <TouchableOpacity style={{
-                                    alignItems:'center'
-                                }}>
-                                    <Image source={require('../img/download.png')} style={{
-                                        width: 25,
-                                        height: 20
-                                    }}/>
-                                    <Text style={{
-                                        fontSize: 12,
-                                        
-                                    }}>download</Text>
-                                </TouchableOpacity>
+                                {
+                                    item.source===''?
+                                    <View style={{
+                                        alignItems:'center'
+                                    }} >
+                                        <Image source={require('../img/download.png')} style={{
+                                            width: 25,
+                                            height: 20,
+                                            tintColor:'#ECECEC'
+                                        }}/>
+                                        <Text style={{
+                                            fontSize: 12,
+                                            
+                                        }}>download</Text>
+                                    </View>:
+                                    <TouchableOpacity style={{
+                                        alignItems:'center'
+                                    }} onPress={()=>this._download(item.source)}>
+                                        <Image source={require('../img/download.png')} style={{
+                                            width: 25,
+                                            height: 20
+                                        }}/>
+                                        <Text style={{
+                                            fontSize: 12,
+                                            
+                                        }}>download</Text>
+                                    </TouchableOpacity>
+                                }
+                                
                             </View>
                         )
                     })
@@ -129,6 +148,14 @@ class LessonScreen extends React.Component{
                 
             </View>
         )
+    }
+    _download=async(item)=>{
+        const supported = await Linking.canOpenURL(item)
+        if (supported){
+            await Linking.openURL(item)
+        }else{
+            Alert.alert(`Don't know how to open this URL: ${item}`)
+        }
     }
 
     Tasks=(items)=>{

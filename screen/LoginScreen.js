@@ -6,9 +6,12 @@ import {
     Image,
     TouchableOpacity,
     TextInput,
-    ActivityIndicator
+    ActivityIndicator,
+    Dimensions
 } from 'react-native'
 import firebase from 'firebase'
+
+const { width, height } = Dimensions.get('screen')
 
 import { connect } from 'react-redux'
 import { authLogin } from '../api/auth/actions'
@@ -80,7 +83,7 @@ class LoginScreen extends React.Component{
                         placeholder='Введите пароль'/>
                 </View>
                 <TouchableOpacity style={styles.btn} onPress={()=>this.handleLogin()}>
-                    <Text style={{color: '#fff', fontSize: 12, fontWeight:'600', letterSpacing: 3}}>Войти</Text>
+                    <Text style={{color: '#fff', fontSize: 14, fontWeight:'bold', letterSpacing: 3,textTransform:'uppercase'}}>Войти</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -103,19 +106,20 @@ class LoginScreen extends React.Component{
          borderWidth: 1,
          borderColor: '#459786',
          borderRadius: 5,
-         width:225,
-         height:30,
-         paddingLeft: 5
+         width: width*0.8,
+         height:40,
+         paddingLeft: 10
      },
      txt:{
          color: '#459786', 
-         fontSize: 14,
+         fontSize: 15,
          fontWeight: '600',
-         margin: 5
+         margin: 5,
+         letterSpacing:1
     },
     btn:{
-        width:175,
-        height: 30,
+        width: width*0.5,
+        height: 40,
         justifyContent:'center',
         alignItems:'center',
         backgroundColor: '#66B9A8',

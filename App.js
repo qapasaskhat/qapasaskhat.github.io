@@ -45,7 +45,7 @@ const ScreenStack = createStackNavigator({
   Lesson:{
     screen: LessonOpen,
     navigationOptions:{
-      title:'Lesson',
+      title:'Урок',
       headerTintColor: '#459786',
       //headerLeft: false,
       headerBackTitle: 'Назад'

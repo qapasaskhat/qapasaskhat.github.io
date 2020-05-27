@@ -5,10 +5,12 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    Dimensions,
 } from 'react-native'
-import firebase from 'firebase'
 import Fire from '../api/Fire'
+
+const { width,height } = Dimensions.get('screen')
 
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -140,19 +142,19 @@ class RegisterScreen extends React.Component{
          borderWidth: 1,
          borderColor: '#459786',
          borderRadius: 5,
-         width:225,
-         height:30,
-         paddingLeft: 5
+         width: width*0.8,
+         height: 40,
+         paddingLeft: 10
      },
      txt:{
          color: '#459786', 
-         fontSize: 14,
+         fontSize: 15,
          fontWeight: '600',
          margin: 5
     },
     btn:{
-        width:175,
-        height: 30,
+        width:width*0.6,
+        height: 40,
         justifyContent:'center',
         alignItems:'center',
         backgroundColor: '#66B9A8',
